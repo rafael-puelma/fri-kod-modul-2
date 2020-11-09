@@ -5,24 +5,27 @@ const nameListEl = document.querySelector(".nameList");
 const headerEl = document.querySelector(".h2");
 
 (function () {
+  // skapa lista  med förnamn och lägg till efternamn
   makeListEl.addEventListener("click", (event) => {
     event.preventDefault();
     const firstName = ["Rafael", "Roberto", "Rodrigo"];
     firstName.forEach(createNameList);
 
     function createNameList(firstName, index) {
+      // lägg till förnamn till Puelma
       const lastName = "Puelma";
 
+      // skapa och lägger ut listan
       document.querySelector(".nameList").innerHTML +=
         index + ":" + firstName + " " + lastName + "<br>";
     }
   });
-
+  //Ändra Font på Rubriken
   headerEl.addEventListener("changeFont", (e) => {
     headerEl.style.color = e.detail.textcolor;
     headerEl.style.fontSize = e.detail.fontSize;
   });
-
+  // Ändra Font på namnlistan
   nameListEl.addEventListener("changeFont", (e) => {
     nameListEl.style.color = e.detail.textcolor;
     nameListEl.style.fontSize = e.detail.fontSize;
@@ -34,6 +37,7 @@ const headerEl = document.querySelector(".h2");
     changeFont("20px", "pink", "green");
   });
 
+  //customevent funktion och specifikation på vilka Font ändringar
   function changeFont(fontSize, textColor, backgroundColor) {
     let newfontEvent = new CustomEvent("changeFont", {
       detail: {
@@ -42,7 +46,7 @@ const headerEl = document.querySelector(".h2");
         backgroundcolor: backgroundColor,
       },
     });
-
+    // dispatches
     nameListEl.dispatchEvent(newfontEvent);
     headerEl.dispatchEvent(newfontEvent);
   }
